@@ -1,0 +1,18 @@
+server:
+  port: 8700
+
+eureka:
+  instance:
+    hostname: localhost
+
+  client:
+    registerWithEureka: false       #通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server,不向服务中心注册
+    fetchRegistry: false            #由于注册中心的职责就是维护服务实例，所以它不需要去检索服务
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    healthcheck:
+      enabled: true
+
+spring:
+  application:
+    name: vuebg-eurka-server
