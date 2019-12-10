@@ -40,7 +40,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!--添加自己的启动类路径！-->
                 <configuration>
-                    <mainClass>com.eureka.EurekaApplication</mainClass>
+                    <mainClass>com.vuebg.eureka.VuebgEurekaApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
