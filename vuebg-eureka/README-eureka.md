@@ -1,4 +1,8 @@
 # 高可用注册中心
+
+解决方案:  
+两个注册中心互相注册
+
 application-peer1.yml
 ```aidl
 server:
