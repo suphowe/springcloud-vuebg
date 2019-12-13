@@ -8,18 +8,50 @@ spring:
   #  zipkin:
   #    base-url: http://localhost:9411
   datasource:
-    url: jdbc:mysql://192.168.200.112:3306/suphowe?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.200.112:3306/suphowe?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+      username: root
+      password: root
+      filters: stat,wall,log4j,config     # 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：监控统计用的filter:stat日志用的filter:log4j防御sql注入的filter:wall
+      max-active: 100                     # 始终保留在池中的最大连接数，如果启用，将定期检查限制连接，超出此属性设定的值且空闲时间超过minEvictableIdleTimeMillis的连接则释放
+      initial-size: 1                     # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+      max-wait: 60000                     # 最大等待时间（毫秒），如果在没有连接可用的情况下等待超过此时间，则抛出异常
+      min-idle: 1                         # 始终保留在池中的最小连接数，池中的连接数量若低于此值则创建新的连接，如果连接验证失败将缩小至此值
+      time-between-eviction-runs-millis: 60000  # 在空闲连接回收器线程运行期间休眠时间（毫秒）， 该值不应该小于 1 秒，它决定线程多久验证空闲连接或丢弃连接的频率
+      min-evictable-idle-time-millis: 300000    # 连接在池中保持空闲而不被回收的最小时间（毫秒）
+      validation-query: select 'x'      # 在连接池返回连接给调用者前用来对连接进行验证的查询 SQL
+      test-while-idle: true             # 对池中空闲的连接是否进行验证，验证失败则回收此连接
+      test-on-borrow: false             # 当从连接池中取出一个连接时是否进行验证，若验证失败则从池中删除该连接并尝试取出另一个连接
+      test-on-return: false             # 在客户端归还连接时检查连接可用性
+      pool-prepared-statements: true    # 设置该连接池的预处理语句池是否生效。在mysql下建议关闭
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8700/eureka/
-    healthcheck:        #开启健康检查
-      enabled: true
+
+# 开放健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.vuebg.admin.entity
+
+# pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
