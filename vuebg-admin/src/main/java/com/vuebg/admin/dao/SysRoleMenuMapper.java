@@ -3,8 +3,10 @@ package com.vuebg.admin.dao;
 import java.util.List;
 
 import com.vuebg.admin.model.SysRoleMenu;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SysRoleMenuMapper {
     int deleteByPrimaryKey(Long id);
 

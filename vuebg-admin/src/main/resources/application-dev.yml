@@ -46,8 +46,8 @@ management:
       show-details: ALWAYS
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.vuebg.admin.entity
+  mapper-locations: classpath:sqlmap/*.xml
+  type-aliases-package: com.vuebg.admin.model
 
 # pagehelper
 pagehelper:

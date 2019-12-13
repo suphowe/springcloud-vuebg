@@ -1,12 +1,13 @@
 package com.vuebg.admin.dao;
 
 import com.vuebg.admin.model.SysDept;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Component
+@Mapper
 public interface SysDeptMapper {
+
     int deleteByPrimaryKey(Long id);
 
     int insert(SysDept record);
