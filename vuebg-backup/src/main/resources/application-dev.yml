@@ -20,6 +20,11 @@ eureka:
     healthcheck:        #开启健康检查
       enabled: true
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.vuebg.backup.entity
+# backup datasource
+vuebg:
+  backup:
+    datasource:
+      host: 192.168.200.112
+      userName: root
+      password: root
+      database: suphowe
