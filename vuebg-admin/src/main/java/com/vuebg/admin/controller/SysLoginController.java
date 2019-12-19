@@ -1,14 +1,7 @@
 package com.vuebg.admin.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
 import com.vuebg.admin.http.HttpResult;
 import com.vuebg.admin.model.LoginBean;
 import com.vuebg.admin.model.SysUser;
@@ -24,8 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * 登录控制器
@@ -66,6 +64,9 @@ public class SysLoginController {
     public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest request) throws IOException {
         String username = loginBean.getAccount();
         String password = loginBean.getPassword();
+
+        /*删除验证码校验*/
+        /*
         String captcha = loginBean.getCaptcha();
 
         // 从session中获取之前保存的验证码跟前台传来的验证码进行匹配
@@ -76,7 +77,7 @@ public class SysLoginController {
 //		if(!captcha.equals(kaptcha)){
 //			return HttpResult.error("验证码不正确");
 //		}
-
+        */
         // 用户信息
         SysUser user = sysUserService.findByName(username);
 

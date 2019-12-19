@@ -1,8 +1,6 @@
 package com.vuebg.admin.controller;
 
 
-import java.util.List;
-
 import com.vuebg.admin.constants.SysConstants;
 import com.vuebg.admin.http.HttpResult;
 import com.vuebg.admin.model.SysUser;
@@ -11,12 +9,11 @@ import com.vuebg.admin.service.ISysUserService;
 import com.vuebg.admin.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -98,5 +95,15 @@ public class SysUserController {
         return HttpResult.ok(sysUserService.findPage(pageRequest));
     }
 
+    /**
+     * 修改密码
+     * @return
+     */
+    @RequestMapping(value="/pwdupd")
+    public HttpResult pwdupd(@RequestBody String body) {
+        Set<String> result = new HashSet<>();
+        result.add("return:" + body);
+        return HttpResult.ok(result);
+    }
 }
 

@@ -36,6 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(new JwtAuthenticationProvider(userDetailsService));
     }
 
+    /**
+     * 添加不需要进行权限验证的url
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 禁用 csrf, 由于使用的是JWT，我们这里不需要csrf
@@ -59,6 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/captcha.jpg**").permitAll()
                 // 服务监控
                 .antMatchers("/actuator/**").permitAll()
+                //修改密码
+                .antMatchers("/user/pwdupd").permitAll()
                 // 其他所有请求需要身份认证
                 .anyRequest().authenticated();
         // 退出登录处理器
