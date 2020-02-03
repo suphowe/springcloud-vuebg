@@ -21,7 +21,12 @@
     </parent>
 
     <modules>
-        <!--<module>eureka-server</module>-->
+        <module>vuebg-admin</module>
+        <module>vuebg-backup</module>
+        <module>vuebg-client</module>
+        <module>vuebg-eureka</module>
+        <module>vuebg-turbine</module>
+        <module>vuebg-zuul</module>
     </modules>
 
     <properties>

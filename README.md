@@ -11,10 +11,10 @@
 - 8702 eureka注册中心2
 
 ## vuebg-zuul
-- 8720 vuebg-zuul 负载均衡|路由
+- 8720 vuebg-zuul 负载均衡|路由 API服务网关
 
 ## vuebg-turbine Hystrix Turbine
-- 8730 vuebg-turbine 熔断数据监控
+- 8730 vuebg-turbine 熔断监控集群
 
 ## 数据备份
 
@@ -27,3 +27,6 @@
 
 ## 8085
 - vuebg-admin 后台管理
+
+## vuebg-zipkin
+分布式链路追踪
